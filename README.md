@@ -1,10 +1,10 @@
-## Castle Link library for RP2040
+## Castle Link library for RP2040 using PIO
 
-Library for the Castle Link protocol using the RP2040 pio. It is compatible with the [SDK](https://raspberrypi.github.io/pico-sdk-doxygen/) and [Arduino](https://github.com/earlephilhower/arduino-pico).
+Library for the Castle Link protocol for RP2040 using PIO. It is compatible with the [SDK](https://raspberrypi.github.io/pico-sdk-doxygen/) and [Arduino](https://github.com/earlephilhower/arduino-pico).
 
 How to use it:
 
-- With SDK. Add *castle_link.pio, castle_link.h and castle_link.c,* to your project. Modify CMakeLists.txt. Add *pico_generate_pio_header* and the required libraries (pico_stdlib, hardware_irq, hardware_pio, hardware_clocks). See [CMakeLists.txt](sdk/CMakeLists.txt)
+- With SDK. Add *castle_link.pio, castle_link.h and castle_link.c,* to your project. Modify CMakeLists.txt. Add *pico_generate_pio_header* and the required libraries (pico_stdlib, hardware_irq, hardware_pio). See [CMakeLists.txt](sdk/CMakeLists.txt)
 - With Arduino. Add *castle_link.pio.h, castle_link.h and castle_link.c* to your project.
 - Define the handler which receives the telemetry frames.
 - Change CASTLE_LINK_IRQ_NUM if conflicts with other state machines irqs. Valid values 0 to 3.  
@@ -38,8 +38,12 @@ Returns:
 
 Parameters:  
 &nbsp;&nbsp;**handler** - function to handle the telemetry frames  
-\
+
 Handler function:  
+\
+**void castle_link_remove()**  
+
+Reset handler and removes pio program from memory.  
 \
 **void castle_link_handler(castle_link_telemetry_t frame)**  
 
