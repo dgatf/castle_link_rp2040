@@ -69,6 +69,7 @@ static inline void handler_pio()
     static const float scaler[11] = {0, 20, 4, 50, 1, 0.2502, 20416.7, 4, 4, 30, 63.8125};
     static uint value[12];
 
+    pio_interrupt_clear(pio_, CASTLE_LINK_IRQ_NUM);
     if (pio_sm_is_rx_fifo_full(pio_, sm_counter_))
     {
         pio_sm_clear_fifos(pio_, sm_counter_);
@@ -113,5 +114,4 @@ static inline void handler_pio()
         handler_(packet);
     }
     index++;
-    pio_interrupt_clear(pio_, CASTLE_LINK_IRQ_NUM);
 }
