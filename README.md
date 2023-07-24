@@ -38,12 +38,12 @@ Returns:
 
 Parameters:  
 &nbsp;&nbsp;**handler** - function to handle the telemetry frames  
-
-Handler function:  
 \
 **void castle_link_remove()**  
 
 Reset handler and removes pio program from memory.  
+\
+Handler function:  
 \
 **void castle_link_handler(castle_link_telemetry_t frame)**  
 

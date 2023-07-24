@@ -81,6 +81,8 @@ static inline void handler_pio()
         //printf("%i \n", data);
         return;
     }
+    if (index > 10)
+        return;
     value[index] = data;
     //printf("(%u)%u ", index, value[index]);
     if (index == 10)
