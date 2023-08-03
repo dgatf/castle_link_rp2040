@@ -11,9 +11,11 @@
 #ifndef PIO_CASTLE
 #define PIO_CASTLE
 
-#include <stdio.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <math.h>
-#include "pico/stdlib.h"
 #include "hardware/pio.h"
 #include "hardware/irq.h"
 #include "castle_link.pio.h"
@@ -53,5 +55,9 @@ typedef void (*castle_link_handler_t)(castle_link_telemetry_t packet);
 void castle_link_init(PIO pio, uint pin_base, uint irq);
 void castle_link_set_handler(castle_link_handler_t handler);
 void castle_link_remove();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -3,7 +3,8 @@
         "stdio.h": "c",
         "type_traits": "c",
         "pio_castle.h": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "castle_link.h": "c"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/sdk"
 }

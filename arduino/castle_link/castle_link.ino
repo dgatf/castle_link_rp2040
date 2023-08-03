@@ -16,19 +16,14 @@
  * -----------------------------------------------------------------------------------------
  */
 
-extern "C" {
 #include "castle_link.h"
-}
 
 static void castle_link_handler(castle_link_telemetry_t packet)
 {
     static char buffer[120];
-    sprintf(buffer, "\nVolt(V): %.2f Ripple volt(V): %.2f Curr(A): %.2f Thr: %.0f Out: %.0f Rpm: %.0f Bec volt(V): %.2f Bec curr(A): %.2f Temp(C): %.0f", packet.voltage, packet.ripple_voltage, packet.current, packet.thr, packet.output, packet.rpm, packet.voltage_bec, packet.current_bec, packet.temperature);
+    sprintf(buffer, "\nVolt(V): %.2f Ripple volt(V): %.2f Curr(A): %.2f Thr: %.0f Out: %.0f Rpm: %.0f Bec volt(V): %.2f Bec curr(A): %.2f Temp %s (C): %.0f",
+            packet.voltage, packet.ripple_voltage, packet.current, packet.thr, packet.output, packet.rpm, packet.voltage_bec, packet.current_bec, packet.is_temp_ntc ? "NTC" : "Linear", packet.temperature);
     Serial.print(buffer);
-    if (packet.is_temp_ntc)
-        Serial.print(" NTC");
-    else
-        Serial.print(" Linear");
 }
 
 void setup()
