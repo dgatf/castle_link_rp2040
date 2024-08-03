@@ -17,27 +17,26 @@
  */
 
 #include <stdio.h>
-#include "pico/stdlib.h"
-#include "castle_link.h"
 
-static void castle_link_handler(castle_link_telemetry_t packet)
-{
-    printf("\nVolt(V): %.2f Ripple volt(V): %.2f Curr(A): %.2f Thr: %.0f Out: %.0f Rpm: %.0f Bec volt(V): %.2f Bec curr(A): %.2f Temp %s (C): %.0f",
-            packet.voltage, packet.ripple_voltage, packet.current, packet.thr, packet.output, packet.rpm, packet.voltage_bec, packet.current_bec, packet.is_temp_ntc ? "NTC" : "Linear", packet.temperature);
+#include "castle_link.h"
+#include "pico/stdlib.h"
+
+static void castle_link_handler(castle_link_telemetry_t packet) {
+    printf(
+        "\nVolt(V): %.2f Ripple volt(V): %.2f Curr(A): %.2f Thr: %.0f Out: %.0f Rpm: %.0f Bec volt(V): %.2f Bec "
+        "curr(A): %.2f Temp %s (C): %.0f",
+        packet.voltage, packet.ripple_voltage, packet.current, packet.thr, packet.output, packet.rpm,
+        packet.voltage_bec, packet.current_bec, packet.is_temp_ntc ? "NTC" : "Linear", packet.temperature);
 }
 
-int main()
-{
-    PIO pio = pio0;        // values: pio0, pio1
-    uint pin_base = 4;          // gpio 4 = receiver signal. gpio 5 = esc signal. Any gpio is valid
-    uint irq = PIO0_IRQ_0; // values for pio0: PIO0_IRQ_0, PIO0_IRQ_1. values for pio1: PIO1_IRQ_0, PIO1_IRQ_1
-
+int main() {
+    PIO pio = pio0;         // values: pio0, pio1
+    uint pin_base = 4;      // gpio 4 = receiver signal. gpio 5 = esc signal. Any gpio is valid
+    uint irq = PIO0_IRQ_0;  // values for pio0: PIO0_IRQ_0, PIO0_IRQ_1. values for pio1: PIO1_IRQ_0, PIO1_IRQ_1
     stdio_init_all();
-
     castle_link_init(pio, pin_base, irq);
     castle_link_set_handler(castle_link_handler);
 
     while (1)
-    {
-    }
+        ;
 }

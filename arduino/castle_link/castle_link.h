@@ -3,7 +3,7 @@
  * All rights reserved.
  *
  * This source code is licensed under the MIT-style license found in the
- * LICENSE file in the root directory of this source tree. 
+ * LICENSE file in the root directory of this source tree.
  *
  * Library for Castle link protocol for RP2040
  */
@@ -15,16 +15,13 @@
 extern "C" {
 #endif
 
-#include <math.h>
 #include "hardware/pio.h"
-#include "hardware/irq.h"
-#include "castle_link.pio.h"
 
 /*                 castle telemetry
 
     index   element                          scaler
     0       sync
-    1       calib 1 (1000us)                 
+    1       calib 1 (1000us)
     2       Volt (V)                         20
     3       rippleVolt (V)                   4
     4       Curr (A)                         50
